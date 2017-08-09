@@ -10,7 +10,7 @@ void setup() {
   myServo1.attach(5);
   myServo2.attach(6);
   radio.begin();
-  radio.openReadingPipe(addresses[1]); // 00001
+  radio.openReadingPipe(1, addresses[1]); // 00001
   radio.openReadingPipe(2, addresses[2]); // 00002
   radio.openReadingPipe(3, addresses[3]); // 00003
   radio.setPALevel(RF24_PA_MIN);
