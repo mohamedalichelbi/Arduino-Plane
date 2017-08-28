@@ -6,6 +6,12 @@
 * 
 * Library: TMRh20/RF24, https://github.com/tmrh20/RF24/
 */
+struct dataStruct{
+  int angleValue;
+  int angleValue1;
+  int angleValue2;
+}myData;
+
 int value = 0; // set values you need to zero
 #include <SPI.h>
 #include <nRF24L01.h>
@@ -29,14 +35,22 @@ void loop() {
   radio.stopListening();
   int potValue = analogRead(A0);
   int angleValue = map(potValue, 0, 1023, 0, 180);
-  radio.write(&angleValue, sizeof(angleValue));
+  
       int potValue1 = analogRead(A1);
       int angleValue1 = map(potValue1, 0, 1023, 0, 180);
-      radio.write(&angleValue1, sizeof(angleValue1));
+      
           int potValue2 = analogRead(A2);
           int angleValue2 = map(potValue2, 0, 1023, MIN_SIGNAL, MAX_SIGNAL);
-          radio.write(&angleValue2, sizeof(angleValue2));
+myData.angleValue = angleValue;     //add these 3 lines*
+myData.angleValue1 = angleValue1;   //add these 3 lines*
+myData.angleValue2 = angleValue2;   //add these 3 lines*
+  radio.write(&myData, sizeof(myData));
+                 radio.write(&myData, sizeof(myData));
+
+                 
            if(Serial.available()) 
            value = Serial.parseInt();    // Parse an Integer from Serial
-           Serial.println(angleValue2);
+           Serial.println(myData.angleValue);
+           Serial.println(myData.angleValue1);
+           Serial.println(myData.angleValue2);
 }
