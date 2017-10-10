@@ -1,9 +1,4 @@
 /*
-* Arduino Wireless Communication Tutorial
-*     Example 2 - Transmitter Code
-*                
-* by Dejan Nedelkovski, www.HowToMechatronics.com
-* 
 * Library: TMRh20/RF24, https://github.com/tmrh20/RF24/
 */
 struct dataStruct{
@@ -20,14 +15,19 @@ int value = 0; // set values you need to zero
 RF24 radio(7, 8); // CNS, CE
 const byte addresses[][6] = {"00001", "00002"};
 boolean buttonState = 0;
-    #define MAX_SIGNAL 2100
-    #define MIN_SIGNAL 700
+    #define MAX_SIGNAL 2200
+    #define MIN_SIGNAL 1000
 void setup() {
   pinMode(12, OUTPUT);
   radio.begin();
   radio.openWritingPipe(addresses[1]); // 00001
   radio.openReadingPipe(1, addresses[0]); // 00002
-  radio.setPALevel(RF24_PA_MIN);
+      radio.setPALevel(RF24_PA_MAX);
+      radio.setDataRate(RF24_250KBPS);
+      
+      radio.setRetries(15,15);
+      
+      
   Serial.begin(115200); 
 }
 void loop() {
