@@ -1,9 +1,5 @@
 /*
-* Arduino Wireless Communication Tutorial
-*     Example 2 - Receiver Code
-*                
-* by Dejan Nedelkovski, www.HowToMechatronics.com
-* 
+*
 * Library: TMRh20/RF24, https://github.com/tmrh20/RF24/
 */
 struct dataStruct{
@@ -32,7 +28,11 @@ void setup() {
   radio.begin();
   radio.openWritingPipe(addresses[0]); // 00002
   radio.openReadingPipe(1, addresses[1]); // 00001
-  radio.setPALevel(RF24_PA_MIN);
+      radio.setPALevel(RF24_PA_MAX);
+      radio.setDataRate(RF24_250KBPS);
+      
+      radio.setRetries(15,15);
+      
   Serial.begin(115200);
 }
 void loop() {
@@ -48,31 +48,15 @@ if ( radio.available()) {
       int angleV = 0;
       
 
-     angleV = myData1.angleV;  //so move elemtes to local variables*
-      //angleV1= myData1.angleV1; //added*
-      //angleV1= myData1.angleV1; //added*
-     //comments, I would make send receive tyme names same myData both
-//txrx*
-      //also do not need angle V variables as i believe you can use
-//directly myData1.angleV instead of angleV etc*
-      //hope this helps, PeterSek*
-
-     
+      angleV = myData1.angleV;  
       myServo.write( myData1.angleV);
-      int angleV1 = 0;
+      int angleV1 = 0;//variable reserved for further valor tests or adaptations if needed
       
-      angleV1= myData1.angleV1; //added...**//also do not need angle V
-//variables as i believe you can use directly myData1.angleV instead of
-//angleV etc*
-
-     
+      angleV1= myData1.angleV1; 
       myServo1.write( myData1.angleV1);
-      int angleV2 =  0;
+      int angleV2 =  0;//variable reserved for further valor tests or adaptations if needed
       
-     angleV1= myData1.angleV1; //added...**//also do not need angle V
-//variables as i believe you can use directly myData1.angleV instead of
-//angleV etc*
-
+     angleV1= myData1.angleV1; 
       
 
                    
