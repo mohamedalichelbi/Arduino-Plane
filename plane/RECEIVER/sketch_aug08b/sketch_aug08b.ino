@@ -1,5 +1,4 @@
 /*
-*
 * Library: TMRh20/RF24, https://github.com/tmrh20/RF24/
 */
 struct dataStruct{
