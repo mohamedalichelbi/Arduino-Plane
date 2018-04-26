@@ -7,14 +7,12 @@ struct dataStruct{
   int angleValue2;
 }myData;
 
-int value = 0; // set values you need to zero
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
 #define led 12
 RF24 radio(7, 8); // CNS, CE
 const byte addresses[][6] = {"00001", "00002"};
-boolean buttonState = 0;
     #define MAX_SIGNAL 2200
     #define MIN_SIGNAL 1000
 void setup() {
@@ -41,15 +39,14 @@ void loop() {
       
           int potValue2 = analogRead(A2);
           int angleValue2 = map(potValue2, 0, 1023, MIN_SIGNAL, MAX_SIGNAL);
-myData.angleValue = angleValue;     //add these 3 lines*
-myData.angleValue1 = angleValue1;   //add these 3 lines*
-myData.angleValue2 = angleValue2;   //add these 3 lines*
+myData.angleValue = angleValue;     
+myData.angleValue1 = angleValue1;   
+myData.angleValue2 = angleValue2;   
   radio.write(&myData, sizeof(myData));
                  radio.write(&myData, sizeof(myData));
 
                  
            if(Serial.available()) 
-           value = Serial.parseInt();    // Parse an Integer from Serial
            Serial.println(myData.angleValue);
            Serial.println(myData.angleValue1);
            Serial.println(myData.angleValue2);
