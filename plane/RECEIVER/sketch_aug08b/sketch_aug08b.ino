@@ -47,11 +47,11 @@ if ( radio.available()) {
 
       angleV = myData1.angleV;  
       myServo.write( myData1.angleV);
-      int angleV1 = 0;//variable reserved for further valor tests or adaptations if needed
+      int angleV1 = 0;//variable reserved for further value tests or adaptations if needed
       
       angleV1= myData1.angleV1; 
       myServo1.write( myData1.angleV1);
-      int angleV2 =  0;//variable reserved for further valor tests or adaptations if needed
+      int angleV2 =  0;//variable reserved for further value tests or adaptations if needed
       
      angleV1= myData1.angleV1; 
       
